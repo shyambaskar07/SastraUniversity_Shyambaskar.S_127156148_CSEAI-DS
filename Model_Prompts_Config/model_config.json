@@ -1,0 +1,38 @@
+{
+  "project_name": "AUTOSAR HLD Document Analysis Assistant",
+  "version": "1.0.0",
+  "domain": "Automotive Software Architecture",
+  "llm_configuration": {
+    "provider": "Groq",
+    "primary_model": "qwen/qwen3.8-27b",
+    "fallback_model": "openai/gpt-oss-120b",
+    "temperature": 0.0,
+    "max_tokens": 1024,
+    "top_p": 1.0,
+    "tone": "Professional, humanized engineering tone without emojis"
+  },
+  "embedding_configuration": {
+    "provider": "HuggingFace",
+    "model_name": "all-MiniLM-L6-v2",
+    "dimension": 384,
+    "execution_mode": "local_cpu"
+  },
+  "text_splitter": {
+    "type": "RecursiveCharacterTextSplitter",
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "separators": ["\n\n", "\n", " ", ""]
+  },
+  "vector_store": {
+    "type": "ChromaDB",
+    "storage_directory": "chroma_db",
+    "search_type": "similarity",
+    "k_retrieval": 4
+  },
+  "responsible_ai_measures": {
+    "strict_grounding": true,
+    "hallucination_prevention": "Model is explicitly instructed to decline answering if information is not found in retrieved context.",
+    "page_level_citations": "Every returned fact must reference the exact document page number.",
+    "data_privacy": "Documents and vector embeddings are stored locally; only retrieved context chunks are transmitted to the inference engine."
+  }
+}

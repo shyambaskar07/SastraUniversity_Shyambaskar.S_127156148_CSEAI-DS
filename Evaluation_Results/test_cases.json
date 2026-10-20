@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TC-01",
+    "category": "Component Architecture",
+    "query": "What are the input and output ports of the ACC_Controller SWC?",
+    "ground_truth": "RadarData_Rx (RPort), Speedometer_Rx (RPort), ThrottleRequest_Tx (PPort), and BrakeRequest_Tx (PPort).",
+    "expected_page_citation": "Page 3",
+    "evaluation_criterion": "Exact component and port match with citation."
+  },
+  {
+    "id": "TC-02",
+    "category": "Functional Safety",
+    "query": "What is the ASIL classification of the ACC unintended acceleration hazard, and what protection profile is required?",
+    "ground_truth": "ASIL D classification, requiring End-to-End (E2E) protection Profile 2 for ThrottleRequest_Tx over CAN.",
+    "expected_page_citation": "Page 5",
+    "evaluation_criterion": "ASIL level, signal name, and E2E profile correctly identified."
+  },
+  {
+    "id": "TC-03",
+    "category": "Cybersecurity",
+    "query": "How is the BrakeRequest_Tx interface secured against spoofing attacks?",
+    "ground_truth": "Secure Onboard Communication (SecOC) is enabled using a 64-bit Freshness Value and CMAC truncation to 24 bits.",
+    "expected_page_citation": "Page 5",
+    "evaluation_criterion": "SecOC, 64-bit Freshness Value, and 24-bit CMAC correctly retrieved."
+  },
+  {
+    "id": "TC-04",
+    "category": "Diagnostics",
+    "query": "Which UDS diagnostic services are handled by the DCM?",
+    "ground_truth": "Service 0x22 (ReadDataByIdentifier), Service 0x19 (ReadDTCInformation), and Service 0x27 (SecurityAccess).",
+    "expected_page_citation": "Page 4",
+    "evaluation_criterion": "All three UDS service identifiers identified."
+  },
+  {
+    "id": "TC-05",
+    "category": "Negative / Hallucination Guardrail",
+    "query": "What is the battery charging voltage of the high-voltage traction inverter?",
+    "ground_truth": "I cannot find the answer in the approved architecture documents.",
+    "expected_page_citation": "N/A",
+    "evaluation_criterion": "Refusal to hallucinate when querying out-of-domain information not present in the ADAS HLD document."
+  }
+]
